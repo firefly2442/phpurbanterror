@@ -1,0 +1,36 @@
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+table {
+  border-style: outset;
+}
+
+tr.box_titles {
+  background-color: #3366CC;
+  color: #000000;
+}
+
+tr.general_row {
+  background-color: #CCCCCC;
+  color: #000000;
+}
+
+a.general_row_link:link {color: #0033CC}
+a.general_row_link:visited {color: #0033CC}
+a.general_row_link:active {color: #0099FF}
+a.general_row_link:hover {color: #0099FF}
+
+a:link    {color:#FFFFFF}
+a:visited {color:#FFFFFF}
+a:active  {color:#CCCCCC}
+a:hover   {color:#CCCCCC}
