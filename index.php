@@ -205,7 +205,7 @@ echo "<td>GameType</td>";
 if ($params['g_gametype'] == 0 || $params['g_gametype'] == 1 || $params['g_gametype'] == 2)
 	echo "<td>FreeForAll</td>\n";
 if($params['g_gametype'] == 1)
-        echo "<b>LMS</b> Last Man Standing";
+        echo "<td>Last Man Standing</td>\n";
 if($params['g_gametype'] == 3)
 	echo "<td>Team Deathmatch</td>\n";
 if($params['g_gametype'] == 4)
@@ -219,9 +219,9 @@ if($params['g_gametype'] == 7)
 if($params['g_gametype'] == 8)
 	echo "<td>Bomb and Defuse</td>\n";
 if($params['g_gametype'] == 9)
-        echo "<b>JUMP</b> Jump";
+        echo "<td>Jump</td>\n";
 if($params['g_gametype'] == 10)
-        echo "<b>FREEZE</b> Freeze Tag";
+        echo "<td>Freeze Tag</td>\n";
 echo "</tr>";
 echo "<tr class='general_row'>\n";
 echo "<td>Friendly Fire</td>";
