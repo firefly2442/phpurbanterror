@@ -4,7 +4,7 @@ Urban Terror PHP Stats
 
 https://github.com/firefly2442/phpurbanterror/
 
-This program allows you to monitor an Urban Terror server via the scripting
+This program allows you to monitor an Urban Terror (http://www.urbanterror.info) server via the scripting
 capabilities of PHP.  It shows information about the server
 settings as well as who is playing.  The code for querying
 the server was adapted from systats:
