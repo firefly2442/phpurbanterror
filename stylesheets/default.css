@@ -13,6 +13,7 @@ body {
 
 table {
   border-style: outset;
+  border: 0px;
 }
 
 tr.box_titles {
@@ -25,6 +26,10 @@ tr.general_row {
   color: #000000;
 }
 
+td.align-top {
+    vertical-align: text-top;
+}
+
 a.general_row_link:link {color: #0033CC}
 a.general_row_link:visited {color: #0033CC}
 a.general_row_link:active {color: #0099FF}
@@ -34,3 +39,8 @@ a:link    {color:#FFFFFF}
 a:visited {color:#FFFFFF}
 a:active  {color:#CCCCCC}
 a:hover   {color:#CCCCCC}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}

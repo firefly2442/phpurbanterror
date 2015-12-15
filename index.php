@@ -83,7 +83,7 @@ if ($socket)
 			}
 
 			if ($out == "")
-				echo "<center><font color=red><h2>Unable to connect to server...</h2></font></center>\n";
+				echo "<font color=red><h2>Unable to connect to server...</h2></font>\n";
 			
 			socket_close ($socket);
 			$out = preg_replace ($pattern, "", $out);
@@ -126,7 +126,7 @@ else
 }
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -135,12 +135,14 @@ else
 <title>Urban Terror Server Status</title>
 </head>
 <body>
-<center>
-<img src="urbanterror.jpg" alt="Server Status" title="Server Status"></img>
+<div class="flex-center">
+<img src="urbanterror.jpg" alt="Server Status" title="Server Status">
+</div>
 <hr>
 <br>
 
-<table border=0>
+<div class="flex-center">
+<table>
 <tr class="box_titles">
 <td><b>
 <?php echo preg_replace_callback('~\^(\d)(.*?)(?=\^|$)~', 'colorParse', $params['sv_hostname']) . " - " . $host . ":" . $port; ?>
@@ -156,17 +158,17 @@ echo "<b>Map: </b>" . $params['mapname'] . "<br>";
 echo count($players) . " / " . $params['sv_maxclients'] . " currently playing<br><br>\n";
 if (file_exists("./levelshots/" . $params['mapname'] . ".jpg"))
 {
-	echo "<img src='./levelshots/" . $params['mapname'] . ".jpg' alt='Map: " . $params['mapname'] . "' title='Map: " . $params['mapname'] . "'></img>\n";
+	echo "<img src='./levelshots/" . $params['mapname'] . ".jpg' alt='Map: " . $params['mapname'] . "' title='Map: " . $params['mapname'] . "'>\n";
 }
 else
 {
-	echo "<img src='./levelshots/no_image.jpg' alt='Map: " . $params['mapname'] . " (no image)' title='Map: " . $params['mapname'] . " (no image)'></img>\n";
+	echo "<img src='./levelshots/no_image.jpg' alt='Map: " . $params['mapname'] . " (no image)' title='Map: " . $params['mapname'] . " (no image)'>\n";
 }
 
 ?>
 </td>
-<td valign="top">
-<table border=0>
+<td class="align-top">
+<table>
 <tr class="box_titles">
 <td><b>Player</b></td>
 <td><b>Score</b></td>
@@ -190,12 +192,14 @@ echo "</table><br>\n";
 </td>
 </tr>
 </table>
+</div>
 
 <br>
-<table border=0>
+<div class="flex-center">
+<table>
 <tr>
 <td>
-<table border=0>
+<table>
 <tr class="box_titles">
 <td><b>Rules</b></td>
 <td><b>Setting</b></td>
@@ -294,23 +298,26 @@ echo "</td></tr>";
 ?>
 </table>
 </td>
-<td valign="top">
+<td class="align-top">
 <?php
 if (substr_count($params['version'], "win") > 0)
-	echo "<img src=\"./images/windows_logo.jpg\" alt=\"Server Runs Windows\" title=\"Server Runs Windows\"></img>\n";
+	echo "<img src=\"./images/windows_logo.jpg\" alt=\"Server Runs Windows\" title=\"Server Runs Windows\">\n";
 if (substr_count($params['version'], "linux") > 0)
-	echo "<img src=\"./images/linux_logo.jpg\" alt=\"Server Runs Linux\" title=\"Server Runs Linux\"></img>\n";
+	echo "<img src=\"./images/linux_logo.jpg\" alt=\"Server Runs Linux\" title=\"Server Runs Linux\">\n";
 ?>
 </td>
 </tr>
 </table>
+</div>
 
 <br>
+<div class="flex-center">
 <?php
-echo "<a href=\"https://github.com/firefly2442/phpurbanterror\" target=\"_blank\">Version: " . $version . " - phpUrbanTerror</a>\n";
+echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>\n";
 ?>
+</div>
 
-</center>
+
 </body>
 </html>
 
