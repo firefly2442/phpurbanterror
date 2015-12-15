@@ -178,7 +178,7 @@ else
 for ($j = 0; $j < count($players); $j++)
 {
 	echo "<tr class='general_row'>\n";
-	echo "<td>" . $players[$j][0] . "</td>\n";
+	echo "<td>" . preg_replace_callback('~\^(\d)(.*?)(?=\^|$)~', 'colorParse', $players[$j][0]) . "</td>\n";
 	echo "<td>" . $players[$j][1] . "</td>\n";
 	if ($players[$j][2] == 999)
 		echo "<td>Connecting...</td>\n";
