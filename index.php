@@ -33,6 +33,12 @@ $pattern2 = "/$magic" . "statusResponse\n/";
 $players = array(); // List of players
 $params = array();  // Game parameters
 
+// color parser (^0 to ^7)
+function colorParse($colorize) {
+    static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white');
+    return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
+}
+
 //Add ?devmode=1 to the URL to see warnings
 //e.g.: http://yourwebsite.com/phpurbanterror/index.php?devmode=1
 isset($_GET['devmode']) ? error_reporting(E_ALL) : error_reporting(!E_WARNING);
@@ -135,7 +141,7 @@ else
 <table border=0>
 <tr class="box_titles">
 <td><b>
-<?php echo $params['sv_hostname'] . " - " . $host . ":" . $port; ?>
+<?php echo preg_replace_callback('~\^(\d)(.*?)(?=\^|$)~', 'colorParse', $params['sv_hostname']) . " - " . $host . ":" . $port; ?>
 </b></td>
 <td><b>Players</b></td>
 </tr>
