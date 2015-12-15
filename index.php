@@ -305,7 +305,7 @@ if (substr_count($params['version'], "linux") > 0)
 
 <br>
 <?php
-echo "<a href=\"https://github.com/firefly2442/phpurbanterror" target=\"_blank\">Version: " . $version . " - phpUrbanTerror</a>\n";
+echo "<a href=\"https://github.com/firefly2442/phpurbanterror\" target=\"_blank\">Version: " . $version . " - phpUrbanTerror</a>\n";
 ?>
 
 </center>
