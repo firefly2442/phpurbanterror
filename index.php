@@ -37,7 +37,7 @@ $params = array();  // Game parameters
 function colorParse($colorize) {
 	//set color based on Quake color alias
 	//http://www.computerhope.com/issues/ch000658.htm
-    static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white');
+    static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white', 'orange', 'dimgray');
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
 
@@ -210,7 +210,7 @@ echo "<td>" . $params['g_modversion'] . "</td>";
 echo "</tr>";
 echo "<tr class='general_row'>\n";
 echo "<td>Urban Terror Server Version</td>";
-echo "<td>" . $params['version'] . "</td>";
+echo "<td>" . preg_replace_callback('~\^(\d)(.*?)(?=\^|$)~', 'colorParse', $params['version']) . "</td>";
 echo "</tr>";
 echo "<tr class='general_row'>\n";
 echo "<td>GameType</td>";
