@@ -35,6 +35,8 @@ $params = array();  // Game parameters
 
 // color parser (^0 to ^7)
 function colorParse($colorize) {
+	//set color based on Quake color alias
+	//http://www.computerhope.com/issues/ch000658.htm
     static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white');
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
