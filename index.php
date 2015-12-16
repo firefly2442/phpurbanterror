@@ -110,6 +110,11 @@ if ($socket)
 				$player = array( $name, $score, $ping );
 				$players[] = $player;
 			}
+			//sort by player score
+			foreach ($players as $key => $row) {
+				$scores[$key] = $row[1];
+			}
+			array_multisort($scores, SORT_DESC, $players);
 		}
 		else
 		{
