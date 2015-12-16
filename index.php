@@ -334,15 +334,14 @@ if (substr_count($params['version'], "linux") > 0)
 </div>
 
 <br>
+
 <div class="flex-center">
 <p>
-<?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerro$
+<?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>"; ?> <span class="bull">&bull;</span>
 <a href="#" onclick="changeCSS('stylesheets/dark.css', 0);">Grayscale</a> <span class="bull">&bull;</span>
 <a href="#" onclick="changeCSS('stylesheets/default.css', 0);">Default Style</a>
 </p>
-
 </div>
-
 
 </body>
 </html>
