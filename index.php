@@ -38,7 +38,7 @@ function colorParse($colorize) {
 	//set color based on Quake color alias
 	//http://www.computerhope.com/issues/ch000658.htm
 	//http://wolfwiki.anime.net/index.php/Color_Codes
-    static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white', 'orange', 'dimgray');
+    static $colors = array('black', '#DD2020', '#00CC00', '#DDCC00', '#3377EE', '#00EEEE', '#DD55DD', 'white', 'orange', '#888888');
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
 
