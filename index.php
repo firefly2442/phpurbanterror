@@ -285,6 +285,9 @@ for ($i = count($vote_values)-1; $i >= 0; $i--)
 	$index_value++;
 }
 
+if ($params['g_allowvote'] == "0")
+	echo "No voting allowed.";
+
 echo "</td>";
 echo "</tr>";
 echo "<tr class='general_row'>\n";
