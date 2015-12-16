@@ -36,7 +36,8 @@ $params = array();  // Game parameters
 // color parser (^0 to ^9)
 function colorParse($colorize) {
 	//set color based on Quake color alias
-	//http://www.computerhope.com/issues/ch000658.htm + ^8 = orange and ^9 = dim gray
+	//http://www.computerhope.com/issues/ch000658.htm
+	//http://wolfwiki.anime.net/index.php/Color_Codes
     static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white', 'orange', 'dimgray');
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
