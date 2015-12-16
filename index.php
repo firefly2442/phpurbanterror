@@ -57,7 +57,7 @@ if ($socket)
 		$time = time();
 		$error = "";
 		while (!@socket_connect ($socket, $host, $port ))
-		{	
+		{
 			$err = socket_last_error ($socket);
 			if ($err == 115 || $err == 114)
 			{
@@ -77,7 +77,7 @@ if ($socket)
 			socket_write ($socket, $magic . "getstatus\n");
 			$read = array ($socket);
 			$out = "";
-			
+
 			while (socket_select ($read, $write = NULL, $except = NULL, 1))
 			{
 				$out .= socket_read ($socket, $length, PHP_BINARY_READ);
@@ -85,7 +85,7 @@ if ($socket)
 
 			if ($out == "")
 				echo "<font color=red><h2>Unable to connect to server...</h2></font>\n";
-			
+
 			socket_close ($socket);
 			$out = preg_replace ($pattern, "", $out);
 			$out = preg_replace ($pattern2, "", $out);
@@ -97,7 +97,7 @@ if ($socket)
 			{
 				$params[ strtolower($params[$i]) ] = $params[++$i];
 			}
-				
+
 			for( $i = 1; $i < count($all) - 1; $i++ )
 			{
 				$pos = strpos( $all[$i], " " );
@@ -121,12 +121,12 @@ if ($socket)
 			echo "Unable to connect to server.";
 		}
 	}
-	else 
+	else
 	{
 		echo "Error! Unable to set nonblock on socket.";
 	}
 }
-else 
+else
 {
 	echo "The server is DOWN!";
 }
@@ -138,6 +138,20 @@ else
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <link rel="stylesheet" type="text/css" href="./stylesheets/default.css">
 <link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript">
+function changeCSS(cssFile, cssLinkIndex) {
+
+    var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", cssFile);
+
+    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
+</script>
+
 <title>Urban Terror Server Status</title>
 </head>
 <body>
@@ -321,9 +335,12 @@ if (substr_count($params['version'], "linux") > 0)
 
 <br>
 <div class="flex-center">
-<?php
-echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>\n";
-?>
+<p>
+<?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerro$
+<a href="#" onclick="changeCSS('stylesheets/dark.css', 0);">Grayscale</a> <span class="bull">&bull;</span>
+<a href="#" onclick="changeCSS('stylesheets/default.css', 0);">Default Style</a>
+</p>
+
 </div>
 
 
