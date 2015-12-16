@@ -324,9 +324,9 @@ echo "</td></tr>";
 <td class="align-top">
 <?php
 if (substr_count($params['version'], "win") > 0)
-	echo "<img src=\"./images/windows_logo.jpg\" alt=\"Server Runs Windows\" title=\"Server Runs Windows\">\n";
+	echo "<img class=\"img-circle\" src=\"./images/windows_logo.jpg\" alt=\"Server Runs Windows\" title=\"Server Runs Windows\">\n";
 if (substr_count($params['version'], "linux") > 0)
-	echo "<img src=\"./images/linux_logo.jpg\" alt=\"Server Runs Linux\" title=\"Server Runs Linux\">\n";
+	echo "<img class=\"img-circle\" src=\"./images/linux_logo.jpg\" alt=\"Server Runs Linux\" title=\"Server Runs Linux\">\n";
 ?>
 </td>
 </tr>

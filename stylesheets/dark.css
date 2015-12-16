@@ -61,3 +61,5 @@ a:hover   {color:#CCCCCC}
 }
 
 span.bull { color:#FFFFFF; }
+
+.img-circle { border-radius: 50%; }
