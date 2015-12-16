@@ -42,6 +42,9 @@ function colorParse($colorize) {
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
 
+// ip2location
+$iploc = json_decode(file_get_contents("http://ipinfo.io/{$host}/json"));
+
 //Add ?devmode=1 to the URL to see warnings
 //e.g.: http://yourwebsite.com/phpurbanterror/index.php?devmode=1
 isset($_GET['devmode']) ? error_reporting(E_ALL) : error_reporting(!E_WARNING);
@@ -175,6 +178,7 @@ function changeCSS(cssFile, cssLinkIndex) {
 
 //map information
 echo "<b>Map: </b>" . $params['mapname'] . "<br>";
+echo "<b>Location: </b>" . $iploc->country . " " . $iploc->city . "<br>";
 echo count($players) . " / " . $params['sv_maxclients'] . " currently playing<br><br>\n";
 if (file_exists("./levelshots/" . $params['mapname'] . ".jpg"))
 {
