@@ -280,10 +280,12 @@ echo "<tr class='general_row'>\n";
 echo "<td>Password Protected</td>";
 echo "<td>" . $params['g_needpass'] . "</td>";
 echo "</tr>";
-echo "<tr class='general_row'>\n";
-echo "<td>Warmup Time</td>";
-echo "<td>" . $params['g_warmup'] . " seconds </td>";
-echo "</tr>";
+if (isset($params['g_warmup'])) {
+	echo "<tr class='general_row'>\n";
+	echo "<td>Warmup Time</td>";
+	echo "<td>" . $params['g_warmup'] . " seconds </td>";
+	echo "</tr>";
+}
 echo "<tr class='general_row'>\n";
 echo "<td>Swap Roles</td>";
 echo "<td>" . $params['g_swaproles'] . "</td>";
