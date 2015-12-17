@@ -44,3 +44,5 @@ a:hover   {color:#CCCCCC}
   display: flex;
   justify-content: center;
 }
+
+.img-circle { border-radius: 50%; }

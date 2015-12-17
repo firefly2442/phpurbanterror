@@ -38,9 +38,12 @@ function colorParse($colorize) {
 	//set color based on Quake color alias
 	//http://www.computerhope.com/issues/ch000658.htm
 	//http://wolfwiki.anime.net/index.php/Color_Codes
-    static $colors = array('black', 'red', 'green', 'yellow', 'blue', 'lightblue', 'pink', 'white', 'orange', 'dimgray');
+    static $colors = array('black', '#DD2020', '#00CC00', '#DDCC00', '#3377EE', '#00EEEE', '#DD55DD', 'white', 'orange', '#888888');
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
+
+// ip2location
+$iploc = json_decode(file_get_contents("http://ipinfo.io/{$host}/json"));
 
 //Add ?devmode=1 to the URL to see warnings
 //e.g.: http://yourwebsite.com/phpurbanterror/index.php?devmode=1
@@ -57,7 +60,7 @@ if ($socket)
 		$time = time();
 		$error = "";
 		while (!@socket_connect ($socket, $host, $port ))
-		{	
+		{
 			$err = socket_last_error ($socket);
 			if ($err == 115 || $err == 114)
 			{
@@ -77,7 +80,7 @@ if ($socket)
 			socket_write ($socket, $magic . "getstatus\n");
 			$read = array ($socket);
 			$out = "";
-			
+
 			while (socket_select ($read, $write = NULL, $except = NULL, 1))
 			{
 				$out .= socket_read ($socket, $length, PHP_BINARY_READ);
@@ -85,7 +88,7 @@ if ($socket)
 
 			if ($out == "")
 				echo "<font color=red><h2>Unable to connect to server...</h2></font>\n";
-			
+
 			socket_close ($socket);
 			$out = preg_replace ($pattern, "", $out);
 			$out = preg_replace ($pattern2, "", $out);
@@ -97,7 +100,7 @@ if ($socket)
 			{
 				$params[ strtolower($params[$i]) ] = $params[++$i];
 			}
-				
+
 			for( $i = 1; $i < count($all) - 1; $i++ )
 			{
 				$pos = strpos( $all[$i], " " );
@@ -121,12 +124,12 @@ if ($socket)
 			echo "Unable to connect to server.";
 		}
 	}
-	else 
+	else
 	{
 		echo "Error! Unable to set nonblock on socket.";
 	}
 }
-else 
+else
 {
 	echo "The server is DOWN!";
 }
@@ -138,6 +141,20 @@ else
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <link rel="stylesheet" type="text/css" href="./stylesheets/default.css">
 <link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript">
+function changeCSS(cssFile, cssLinkIndex) {
+
+    var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", cssFile);
+
+    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
+</script>
+
 <title>Urban Terror Server Status</title>
 </head>
 <body>
@@ -161,6 +178,7 @@ else
 
 //map information
 echo "<b>Map: </b>" . $params['mapname'] . "<br>";
+echo "<b>Location: </b>" . $iploc->country . " " . $iploc->city . "<br>";
 echo count($players) . " / " . $params['sv_maxclients'] . " currently playing<br><br>\n";
 if (file_exists("./levelshots/" . $params['mapname'] . ".jpg"))
 {
@@ -310,9 +328,9 @@ echo "</td></tr>";
 <td class="align-top">
 <?php
 if (substr_count($params['version'], "win") > 0)
-	echo "<img src=\"./images/windows_logo.jpg\" alt=\"Server Runs Windows\" title=\"Server Runs Windows\">\n";
+	echo "<img class=\"img-circle\" src=\"./images/windows_logo.jpg\" alt=\"Server Runs Windows\" title=\"Server Runs Windows\">\n";
 if (substr_count($params['version'], "linux") > 0)
-	echo "<img src=\"./images/linux_logo.jpg\" alt=\"Server Runs Linux\" title=\"Server Runs Linux\">\n";
+	echo "<img class=\"img-circle\" src=\"./images/linux_logo.jpg\" alt=\"Server Runs Linux\" title=\"Server Runs Linux\">\n";
 ?>
 </td>
 </tr>
@@ -320,12 +338,14 @@ if (substr_count($params['version'], "linux") > 0)
 </div>
 
 <br>
-<div class="flex-center">
-<?php
-echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>\n";
-?>
-</div>
 
+<div class="flex-center">
+<p>
+<?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>"; ?> <span class="bull">&bull;</span>
+<a href="#" onclick="changeCSS('stylesheets/dark.css', 0);">Grayscale</a> <span class="bull">&bull;</span>
+<a href="#" onclick="changeCSS('stylesheets/default.css', 0);">Default Style</a>
+</p>
+</div>
 
 </body>
 </html>
