@@ -228,7 +228,7 @@ echo "</table><br>\n";
 <td>
 <table>
 <tr class="box_titles">
-<td><b>Rules</b></td>
+<td><b>Rule</b></td>
 <td><b>Setting</b></td>
 <?php //server information
 echo "<tr class='general_row'>\n";
@@ -269,14 +269,6 @@ echo "<td>Friendly Fire</td>";
 echo "<td>" . $params['g_friendlyfire'] . "</td>";
 echo "</tr>";
 echo "<tr class='general_row'>\n";
-echo "<td>Maximum Ping</td>";
-echo "<td>" . $params['sv_maxping'] . "</td>";
-echo "</tr>";
-echo "<tr class='general_row'>\n";
-echo "<td>Minimum Ping</td>";
-echo "<td>" . $params['sv_minping'] . "</td>";
-echo "</tr>";
-echo "<tr class='general_row'>\n";
 echo "<td>Password Protected</td>";
 echo "<td>" . $params['g_needpass'] . "</td>";
 echo "</tr>";
@@ -286,13 +278,15 @@ if (isset($params['g_warmup'])) {
 	echo "<td>" . $params['g_warmup'] . " seconds </td>";
 	echo "</tr>";
 }
-echo "<tr class='general_row'>\n";
-echo "<td>Swap Roles</td>";
-echo "<td>" . $params['g_swaproles'] . "</td>";
-echo "</tr>";
+if (isset($params['g_swaproles'])) {
+	echo "<tr class='general_row'>\n";
+	echo "<td>Swap Roles</td>";
+	echo "<td>" . $params['g_swaproles'] . "</td>";
+	echo "</tr>";
+}
 // calculate voting options based on g_allowvote
 echo "<tr class='general_row'>\n";
-echo "<td>Voting Allowed On<br><i>(" . $params['g_allowvote'] . ")</i></td>";
+echo "<td>Voting Allowed On<br></td>";
 echo "<td>";
 
 $base_convert = base_convert($params['g_allowvote'], 10, 2);
@@ -315,7 +309,7 @@ for ($i = count($vote_values)-1; $i >= 0; $i--)
 }
 
 if ($params['g_allowvote'] == "0")
-	echo "No voting allowed.";
+	echo "No voting allowed";
 
 echo "</td>";
 echo "</tr>";
@@ -348,9 +342,11 @@ if (substr_count($params['version'], "linux") > 0)
 
 <div class="flex-center">
 <p>
-<?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>"; ?> <span class="bull">&bull;</span>
-<a href="#" onclick="changeCSS('stylesheets/dark.css', 0);">Grayscale</a> <span class="bull">&bull;</span>
-<a href="#" onclick="changeCSS('stylesheets/default.css', 0);">Default Style</a>
+<?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>"; ?>
+<br>
+Theme: 
+<a href="#" onclick="changeCSS('stylesheets/default.css', 0);">Default</a> <span class="bull">&bull;</span>
+<a href="#" onclick="changeCSS('stylesheets/dark.css', 0);">Grayscale</a>
 </p>
 </div>
 
