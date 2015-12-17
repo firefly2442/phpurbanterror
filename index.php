@@ -23,7 +23,7 @@ $location = "";				//Geographic server location, leave blank to attempt to pull 
 // Do not edit anything below this line unless you know what you are doing!
 // ----------------------------------------------------------------------
 
-$version = 0.6;
+$version = 0.7;
 $timeout = 15;                                // Default timeout for the php socket (seconds)
 $length = 2048;                               // Packet length (should this be larger?)
 $protocol = 'udp';                            // Default protocol for sending query
