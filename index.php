@@ -13,7 +13,8 @@
 // Edit this -->
 $host = "127.0.0.1";			//IP address or hostname of Urban Terror server ("127.0.0.1" is local computer)
 $port = 27960;				//port that server is running on (default 27960)
-$website = "";				//Your website, leave blank "" if none
+$website = "";				//Your website, leave blank "" if none or to attempt to pull from the server config setting
+$location = "";				//Geographic server location, leave blank to attempt to pull from the server config setting
 // End here.
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -42,8 +43,6 @@ function colorParse($colorize) {
     return "<span style='color:{$colors[$colorize[1]]}'>{$colorize[2]}</span>";
 }
 
-// ip2location
-$iploc = json_decode(file_get_contents("http://ipinfo.io/{$host}/json"));
 
 //Add ?devmode=1 to the URL to see warnings
 //e.g.: http://yourwebsite.com/phpurbanterror/index.php?devmode=1
@@ -178,7 +177,11 @@ function changeCSS(cssFile, cssLinkIndex) {
 
 //map information
 echo "<b>Map: </b>" . $params['mapname'] . "<br>";
-echo "<b>Location: </b>" . $iploc->country . " " . $iploc->city . "<br>";
+if ($location != "")
+	echo "<b>Location: </b>" . $location . "<br>";
+else if (isset($params[' location'])) //<-- note the extra space, bug in default Urban Terror server config file?
+	echo "<b>Location: </b>" . $params[' location'] . "<br>";
+
 echo count($players) . " / " . $params['sv_maxclients'] . " currently playing<br><br>\n";
 if (file_exists("./levelshots/" . $params['mapname'] . ".jpg"))
 {
@@ -317,10 +320,12 @@ echo "</tr>";
 echo "<tr class='general_row'>\n";
 echo "<td>Website</td>";
 echo "<td>";
-if ($website == "")
+if ($website == "" && !isset($params[' website'])) //<-- note the extra space, bug in default Urban Terror server config file?
 	echo "None";
-else
+else if ($website != "")
 	echo "<a class=\"general_row_link\" href=" . $website . " target=_blank>" . $website . "</a>\n";
+else if (isset($params[' website']))
+	echo "<a class=\"general_row_link\" href=http://" . $params[' website'] . " target=_blank>" . $params[' website'] . "</a>\n";
 echo "</td></tr>";
 ?>
 </table>
