@@ -18,7 +18,7 @@ License: GPLv2 (see license.txt)
 
 This is pretty easy, just copy the folder into your root
 web directory or wherever you want it to reside.  Then edit
-the "index.php" file and change the host, port, and website.
+the "index.php" file and change the top portion of the settings.
 
 Fire up your web-browser and navigate to the directory that
 you installed it.  It should pop up with information on the
