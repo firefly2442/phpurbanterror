@@ -79,8 +79,8 @@ if ($socket)
 			socket_write ($socket, $magic . "getstatus\n");
 			$read = array ($socket);
 			$out = "";
-
-			while (socket_select ($read, $write = NULL, $except = NULL, 1))
+			$write = $except = null;
+			while (socket_select ($read, $write, $except, 1))
 			{
 				$out .= socket_read ($socket, $length, PHP_BINARY_READ);
 			}
@@ -344,7 +344,7 @@ if (substr_count($params['version'], "linux") > 0)
 <p>
 <?php echo "<a href='https://github.com/firefly2442/phpurbanterror' target='_blank'>Version: " . $version . " - phpUrbanTerror</a>"; ?>
 <br>
-Theme: 
+Theme:
 <a href="#" onclick="changeCSS('stylesheets/default.css', 0);">Default</a> <span class="bull">&bull;</span>
 <a href="#" onclick="changeCSS('stylesheets/dark.css', 0);">Grayscale</a>
 </p>
