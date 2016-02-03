@@ -9,19 +9,9 @@
 // ---------------------------------------------------------------------
 
 
-////////////////////////////////////////////////////////////////////////////////
-// Edit this -->
-$host = "127.0.0.1";			//IP address or hostname of Urban Terror server ("127.0.0.1" is local computer)
-$port = 27960;				//port that server is running on (default 27960)
-$website = "";				//Your website, leave blank "" if none or to attempt to pull from the server config setting
-$location = "";				//Geographic server location, leave blank to attempt to pull from the server config setting
-// End here.
-////////////////////////////////////////////////////////////////////////////////
+// Make any config changes in config.ini, not in this file
 
-
-
-// Do not edit anything below this line unless you know what you are doing!
-// ----------------------------------------------------------------------
+$config = parse_ini_file( 'config.ini' );
 
 $version = 0.7;
 $timeout = 15;                                // Default timeout for the php socket (seconds)
@@ -58,7 +48,7 @@ if ($socket)
 	{
 		$time = time();
 		$error = "";
-		while (!@socket_connect ($socket, $host, $port ))
+		while (!@socket_connect ($socket, $config['host'], $config['port'] ))
 		{
 			$err = socket_last_error ($socket);
 			if ($err == 115 || $err == 114)
@@ -167,7 +157,7 @@ function changeCSS(cssFile, cssLinkIndex) {
 <table>
 <tr class="box_titles">
 <td><b>
-<?php echo preg_replace_callback('~\^(\d)(.*?)(?=\^|$)~', 'colorParse', $params['sv_hostname']) . " - " . $host . ":" . $port; ?>
+<?php echo preg_replace_callback('~\^(\d)(.*?)(?=\^|$)~', 'colorParse', $params['sv_hostname']) . " - " . $config['host'] . ":" . $config['port']; ?>
 </b></td>
 <td><b>Players</b></td>
 </tr>
@@ -177,8 +167,8 @@ function changeCSS(cssFile, cssLinkIndex) {
 
 //map information
 echo "<b>Map: </b>" . $params['mapname'] . "<br>";
-if ($location != "")
-	echo "<b>Location: </b>" . $location . "<br>";
+if ($config['location'] != "")
+	echo "<b>Location: </b>" . $config['location'] . "<br>";
 else if (isset($params[' location'])) //<-- note the extra space, bug in default Urban Terror server config file?
 	echo "<b>Location: </b>" . $params[' location'] . "<br>";
 
@@ -316,10 +306,10 @@ echo "</tr>";
 echo "<tr class='general_row'>\n";
 echo "<td>Website</td>";
 echo "<td>";
-if ($website == "" && !isset($params[' website'])) //<-- note the extra space, bug in default Urban Terror server config file?
+if ($config['website'] == "" && !isset($params[' website'])) //<-- note the extra space, bug in default Urban Terror server config file?
 	echo "None";
-else if ($website != "")
-	echo "<a class=\"general_row_link\" href=" . $website . " target=_blank>" . $website . "</a>\n";
+else if ($config['website'] != "")
+	echo "<a class=\"general_row_link\" href=" . $config['website'] . " target=_blank>" . $config['website'] . "</a>\n";
 else if (isset($params[' website']))
 	echo "<a class=\"general_row_link\" href=http://" . $params[' website'] . " target=_blank>" . $params[' website'] . "</a>\n";
 echo "</td></tr>";
